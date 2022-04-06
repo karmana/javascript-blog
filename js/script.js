@@ -85,7 +85,7 @@ function generateTitleLinks(customSelector = ''){
 generateTitleLinks();
 
 function generateTags(){
-  let allTags = []; ///* [NEW] create a new variable allTags with an empty array */
+  let allTags = {}; ///* [NEW] create a new variable allTags with an empty object */
 
   const articles = document.querySelectorAll(optArticleSelector); /* [DONE] find all articles */
 
@@ -106,9 +106,11 @@ function generateTags(){
       html = html + tagHTML;     /* add generated code to html variable */
 
       /* [NEW] check if this link is NOT already in allTags */
-      if(allTags.indexOf(tagHTML) == -1){
+      if(!allTags.hasOwnProperty(tag)){
         /* [NEW] add generated code to allTags array */
-        allTags.push(tagHTML);
+        allTags[tag] = 1;
+      } else {
+        allTags[tag]++;
       }
 
     } /* END LOOP: for each tag */
@@ -119,9 +121,14 @@ function generateTags(){
   /* [NEW] find list of tags in right column */
   const tagList = document.querySelector(optTagsListSelector);
 
+  let allTagsHtml = '';
+  
+  for(let tag in allTags){
+    allTagsHtml += '<li><a href="#tag-' + tag + '">' + tag + '(' + allTags[tag] + ')</a></li>'; 
+  }
   /* [NEW] add html from allTags to tagList */
-  tagList.innerHTML = allTags.join(' ');
-
+  tagList.innerHTML = allTagsHtml;
+  console.log(allTags);
 }
 
 generateTags();
