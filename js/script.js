@@ -43,16 +43,19 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
-function generateTitleLinks(){
+function generateTitleLinks(customSelector = ''){
 
   /* [DONE] remove contents of titleList */
-  const titleList = document.querySelector(optTitleListSelector).innerHTML = '';
-
+  const titleList = document.querySelector(optTitleListSelector);
+  titleList.innerHTML = '';
+  
   /* [DONE] for each article */
-  const articles = document.querySelectorAll(optArticleSelector);
-
+  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  console.log(articles);
+  
   let html = '';
 
   for(let article of articles){
@@ -71,21 +74,11 @@ function generateTitleLinks(){
     console.log(linkHTML);
         
     /* insert link into titleList */
-    const titles = document.querySelector('.titles');
-    titles.insertAdjacentHTML('afterbegin', linkHTML);
-
-    /* Pytania do mentora
-            1. dlaczego nie dziala ze stala optTitleListSelector??
-            2. dlaczego nie dziala titleList.innerHTML = titleList.innerHTML + linkHTML; 
-            3. czemu nie dziala html i titleList 
-            4. Wedlug podsumowania strona powinna wygladac tak samo - nie wyglada, artykuly sa ulozone malejaco a nie rosnaco*/
-        
     html = html + linkHTML;    
-    console.log(html);
 
   }
 
-  // titleList.innerHTML = html;
+  titleList.innerHTML = html;
 
   const links = document.querySelectorAll('.titles a');
   console.log(links);
@@ -106,7 +99,8 @@ function generateTags(){
   for(let article of articles){
     
     /* find tags wrapper */
-    const tagsWrapper = article.querySelector(optArticleTagsSelector).innerHTML = '';
+    const tagsWrapper = article.querySelector(optArticleTagsSelector);
+    tagsWrapper.innerHTML = '';
 
     /* make html variable with empty string */
     let html = '';
@@ -121,18 +115,15 @@ function generateTags(){
     for(let tag of articleTagsArray){
 
       /* generate HTML of the link */
-      const tagHTML = '<li><a href="#tag-' + tag + '"></a></li>';
-
+      const tagHTML = '<li><a href="#tag-' + tag + '">' + tag + '</a></li>';
+      console.log(tagHTML);
       /* add generated code to html variable */
       html = html + tagHTML;
 
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
-    //tagsWrapper.innerHTML = html;
-    const wrapper = document.querySelector('.post-tags .list');
-    wrapper.insertAdjacentHTML('afterend', html);
-    console.log(wrapper);
+    tagsWrapper.innerHTML = html;
     
     /* END LOOP: for every article: */
   }
@@ -200,3 +191,42 @@ function addClickListenersToTags(){
 }
   
 addClickListenersToTags();
+
+
+function generateAuthors(){
+  /* [DONE] find all articles */
+  const articles = document.querySelectorAll(optArticleSelector);
+  
+  /* START LOOP: for every article: */
+  for(let article of articles){
+      
+    /* find author wrapper */
+    const authorWrapper = article.querySelector(optArticleAuthorSelector).innerHTML = '';
+  
+    /* make html variable with empty string */
+    let html = '';
+  
+    /* [DONE] get author from data-author attribute */
+    const articleAuthor = article.getAttribute('data-author');
+    console.log(articleAuthor);
+
+    /* generate HTML of the link */
+    const authorHTML = '<a href="#' + articleAuthor + '"></a>';
+    console.log(authorHTML);
+
+    /* add generated code to html variable */
+    html = html + authorHTML;
+    console.log(html);
+    
+    /* insert HTML of all the links into the author wrapper */
+    //authorWrapper.innerHTML = html;
+    const wrapper = document.querySelector('.post-author');
+    wrapper.insertAdjacentHTML('afterbegin', html);
+    console.log(wrapper); 
+      
+    /* END LOOP: for every article: */
+  }
+}
+  
+generateAuthors();
+  
