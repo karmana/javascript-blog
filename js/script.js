@@ -1,5 +1,20 @@
 'use strict';
 
+const optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author',
+  optTagsListSelector = '.tags.list',
+  optCloudClassCount = '5',
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorListSelector = '.authors.list';
+
+const opts = {
+  articleSelector: '.post',
+  titleSelector: '.post-title',
+  titleListSelector: '.titles',
+};
+
+
+
 function titleClickHandler(event){
   event.preventDefault();
   const clickedElement = this;
@@ -37,24 +52,15 @@ function titleClickHandler(event){
   targetArticle.classList.add('active');
 }
 
-const optArticleSelector = '.post',
-  optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list',
-  optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list',
-  optCloudClassCount = '5',
-  optCloudClassPrefix = 'tag-size-',
-  optAuthorListSelector = '.authors.list';
 
 function generateTitleLinks(customSelector = ''){
 
   /* [DONE] remove contents of titleList */
-  const titleList = document.querySelector(optTitleListSelector);
+  const titleList = document.querySelector(opts.titleListSelector);
   titleList.innerHTML = '';
   
   /* [DONE] for each article */
-  const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  const articles = document.querySelectorAll(opts.articleSelector + customSelector);
   
   let html = '';
 
@@ -65,7 +71,7 @@ function generateTitleLinks(customSelector = ''){
         
     /* [DONE] find the title element */
     /* [DONE] get the title from the title element */
-    const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+    const articleTitle = article.querySelector(opts.titleSelector).innerHTML;
 
     /* [DONE] create HTML of the link */
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
@@ -118,7 +124,7 @@ function calculateTagClass(count, params){
 function generateTags(){
   let allTags = {}; ///* [NEW] create a new variable allTags with an empty object */
 
-  const articles = document.querySelectorAll(optArticleSelector); /* [DONE] find all articles */
+  const articles = document.querySelectorAll(opts.articleSelector); /* [DONE] find all articles */
 
   for(let article of articles){   /* START LOOP: for every article: */
     
@@ -240,7 +246,7 @@ addClickListenersToTags();
 function generateAuthors(){
 
   let allAuthors = {};
-  const articles = document.querySelectorAll(optArticleSelector); /* find all articles */
+  const articles = document.querySelectorAll(opts.articleSelector); /* find all articles */
   
   /* START LOOP: for every article: */
   for(let article of articles){
