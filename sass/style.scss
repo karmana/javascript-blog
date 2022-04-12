@@ -83,19 +83,64 @@ body {
   .active {
     font-weight: bold;
   }
+
 }
 
 .list-horizontal {
   li {
     display: inline-block;
+    padding-right: 4px;
   }
+}
+
+/* Cloud Tags */
+
+ul.list.tags {
+  text-align: center;
+  
+  li {
+  float: left;
+  padding-left: 2px;
+  padding-right: 2px;
+  }
+  
+}
+
+.tag-size-1 {
+  font-size: 60%;
+  color: #F2D096;
+
+}
+.tag-size-2 {
+  font-size: 80%;
+  color: #8FB9AA;
+  
+}
+.tag-size-3 {
+  font-size: 100%;
+  color: #304D63;
+  
+}
+.tag-size-4 {
+  font-size: 120%;
+  color: #B2E7E8;
+  
+}
+.tag-size-5 {
+  font-size: 140%;
+  color: #ED8975;
+  
 }
 
 /* Authors */
 
-.authors {
-  li {
-    margin-bottom: 12px;
+.authors-section {
+    clear: left;
+
+  .authors {
+    li {
+      margin-bottom: 12px;
+    }
   }
 }
 
@@ -118,3 +163,5 @@ body {
     margin: 0 10px 0 0;
   }
 }
+
+
