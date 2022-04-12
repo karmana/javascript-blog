@@ -238,8 +238,9 @@ function addClickListenersToTags(){
 addClickListenersToTags();
 
 function generateAuthors(){
-  /* [DONE] find all articles */
-  const articles = document.querySelectorAll(optArticleSelector);
+
+  let allAuthors = {};
+  const articles = document.querySelectorAll(optArticleSelector); /* find all articles */
   
   /* START LOOP: for every article: */
   for(let article of articles){
@@ -254,20 +255,32 @@ function generateAuthors(){
     /* [DONE] get author from data-author attribute */
     const tempArticleAuthor = article.getAttribute('data-author');
     const articleAuthor = tempArticleAuthor.replace(' ','-');
-
-
-    /* generate HTML of the link */
-    const authorHTML = '<a href="#author-' + articleAuthor + '">' + tempArticleAuthor + '</a>';
-
-    /* add generated code to html variable */
-    html = html + authorHTML;
+    const authorHtml = '<a href="#author-' + articleAuthor + '">' + tempArticleAuthor + '</a>'; /* generate HTML of the link */
+    html = html + authorHtml; /* add generated code to html variable */
     
-    /* insert HTML of all the links into the author wrapper */
-    authorWrapper.innerHTML = html;
-      
-    /* END LOOP: for every article: */
+    if(!allAuthors.hasOwnProperty(tempArticleAuthor)){
+      allAuthors[tempArticleAuthor] = 1;
+    } else {
+      allAuthors[tempArticleAuthor]++;
+    }
+  
+    console.log('all authors:', allAuthors);
+
+    authorWrapper.innerHTML = html; /* insert HTML of all the links into the author wrapper */
   }
+      
+  /* END LOOP: for every article: */
+  const authorsList = document.querySelector(optAuthorListSelector);
+
+  let allAuthorsHtml = '';
+  for (let articleAuthor in allAuthors){
+    
+    allAuthorsHtml += '<li><a href="#author-' + articleAuthor + '">' + articleAuthor + '</a> (' + allAuthors[articleAuthor] + ')</li>'; 
+   
+  }
+  authorsList.innerHTML = allAuthorsHtml;
 }
+
 generateAuthors();
 
 function authorClickHandler(event){

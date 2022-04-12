@@ -90,6 +90,10 @@ body {
   li {
     display: inline-block;
     padding-right: 4px;
+    
+    a {
+      text-decoration: none;
+    }
   }
 }
 
@@ -102,22 +106,26 @@ ul.list.tags {
   float: left;
   padding-left: 2px;
   padding-right: 2px;
+    
+  a {
+    text-decoration: none;
   }
+}
   
 }
 
 .tag-size-1 {
-  font-size: 60%;
-  color: #F2D096;
+  font-size: 75%;
+  color: #305830;
 
 }
 .tag-size-2 {
-  font-size: 80%;
+  font-size: 90%;
   color: #8FB9AA;
   
 }
 .tag-size-3 {
-  font-size: 100%;
+  font-size: 105%;
   color: #304D63;
   
 }
@@ -127,7 +135,7 @@ ul.list.tags {
   
 }
 .tag-size-5 {
-  font-size: 140%;
+  font-size: 130%;
   color: #ED8975;
   
 }
@@ -136,10 +144,15 @@ ul.list.tags {
 
 .authors-section {
     clear: left;
+    padding-top: 10px;
 
   .authors {
     li {
       margin-bottom: 12px;
+      
+      a { 
+        text-decoration: none;
+      }
     }
   }
 }
