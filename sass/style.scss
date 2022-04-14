@@ -99,14 +99,15 @@ body {
 
 /* Cloud Tags */
 
-ul.list.tags {
-  text-align: center;
-  
-  li {
-  float: left;
-  padding-left: 2px;
-  padding-right: 2px;
-    
+.list.tags {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+.list-item {
+  margin: 0 3px;
+
   a {
     text-decoration: none;
   }

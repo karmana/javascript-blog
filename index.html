@@ -180,8 +180,8 @@
             <aside class="sidebar">
               <div class="tags-section">
                   <h2 class="section-title">Tags</h2>
-                  <ul class="list tags">
-                  </ul>
+                  <div class="list tags">
+                  </div>
               </div>
               <div class="authors-section">
                 <h2 class="section-title">Authors</h2>
@@ -207,7 +207,7 @@
 
     <script id="template-tag-cloud-link" type="text/x-handlebars-template">
       {{#each tags}}
-      <li><a href="#tag-{{ tag }}" class="tag-size-{{ className }}">{{ tag }}</a></li>
+      <div class="list-item"><a href="#tag-{{ tag }}" class="tag-size-{{ className }}">{{ tag }}</a></div>
       {{/each}}
     </script>
 
